@@ -3,7 +3,7 @@ FROM n8nio/n8n:latest
 FROM caddy:alpine
 
 # Set the working directory
-WORKDIR /home/node/
+WORKDIR ./
 
 # Copy local files (if needed)
 COPY . .
