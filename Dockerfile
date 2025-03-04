@@ -3,19 +3,19 @@ FROM n8nio/n8n:latest
 FROM caddy:alpine
 
 # Set the working directory
-WORKDIR /data
+WORKDIR /home/node/
 
-# Copy local files (optional, if needed)
+# Copy local files (if needed)
 COPY . .
 
-# Set correct permissions
-RUN chown -R /data
+# Ensure the correct permissions
+RUN chown -R node:node /home/node/
 
-# Switch to non-root user for security
+# Switch to a non-root user for security
 USER node
 
-# Expose the n8n default port
+# Expose the n8n port
 EXPOSE 5678
 
-# Start n8n
+# Start n8n when the container runs
 CMD ["n8n"]
