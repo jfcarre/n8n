@@ -9,6 +9,7 @@ WORKDIR /home/node/
 COPY . .
 
 # Ensure the correct permissions
+USER root
 RUN chown -R node:node /home/node/
 
 # Switch to a non-root user for security
