@@ -8,13 +8,6 @@ WORKDIR /home/node/
 # Copy local files (if needed)
 COPY . .
 
-# Ensure the correct permissions
-USER root
-RUN chown -R node:node /home/node/
-
-# Switch to a non-root user for security
-USER node
-
 # Expose the n8n port
 EXPOSE 5678
 
