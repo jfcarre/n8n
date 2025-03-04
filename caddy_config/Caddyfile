@@ -1,0 +1,17 @@
+# Replace "n8n.example.com" with your actual domain
+n8n.example.com {
+    reverse_proxy n8n:5678
+
+    # Optional: Enable basic authentication at the proxy level (extra security)
+    basicauth / {
+        admin password_hash
+    }
+
+    # Logging
+    log {
+        output file /data/caddy_logs/n8n_access.log
+    }
+
+    # Enable gzip compression for faster loading
+    encode gzip
+}
