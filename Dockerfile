@@ -1,5 +1,6 @@
 # Use the latest official n8n image as the base
 FROM n8nio/n8n:latest
+FROM caddy:alpine
 
 # Set the working directory
 WORKDIR /home/node/
