@@ -1,21 +1,30 @@
-# Use the latest official n8n image as the base
-#FROM n8nio/n8n:latest
-# FROM caddy:alpine
-FROM node:18-alpine
+# Use an official Node.js runtime as a parent image for n8n
+FROM docker.n8n.io/n8nio/n8n:latest
 
-RUN apk add --update graphicsmagick tzdata
+# Set working directory
+WORKDIR /home/node
 
-USER root
+# Install Caddy
+RUN apt-get update && apt-get install -y curl && \
+    curl -fsSL https://getcaddy.com | bash
 
-RUN apk --update add --virtual build-dependencies python3 build-base && \
-    npm_config_user=root npm install --location=global n8n && \
-    apk del build-dependencies
+# Install PostgreSQL client (optional, if needed)
+RUN apt-get install -y postgresql-client
 
-# Copy local files (if needed)
-WORKDIR /data
+# Copy local files for n8n
+COPY . /home/node/
 
-# Expose the n8n port
-EXPOSE 5678
+# Set environment variables (Railway will override these)
+ENV N8N_HOST=n8n-production-8f51.up.railway.app
+ENV WEBHOOK_URL=https://n8n-production-8f51.up.railway.app
+ENV N8N_BASIC_AUTH_ACTIVE=true
+ENV N8N_PORT=5678
+ENV N8N_PROTOCOL=https
+ENV NODE_ENV=production
+ENV DB_TYPE=postgresdb
 
-# Start n8n when the container runs
-CMD ["n8n"]
+# Expose required ports
+EXPOSE 5678 80 443
+
+# Start services
+CMD ["sh", "-c", "caddy run & n8n"]
