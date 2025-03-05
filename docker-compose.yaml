@@ -17,6 +17,9 @@ services:
     ports:
       - 5678:5678
     environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+      - N8N_BASIC_AUTH_USER
+      - N8N_BASIC_AUTH_PASSWORD
       - TZ=${TIMEZONE}
       - GENERIC_TIMEZONE=${TIMEZONE}
       - N8N_PORT=5678
@@ -56,6 +59,7 @@ services:
 
 volumes:
   caddy_data:
+  caddy_config:
   n8n_storage:
   db_storage:
 
