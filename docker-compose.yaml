@@ -18,6 +18,7 @@ services:
       - 5678:5678
     environment:
       - N8N_HOST=n8n-production-8f51.up.railway.app
+      - WEBHOOK_URL=https://n8n-production-8f51.up.railway.app
       - N8N_BASIC_AUTH_ACTIVE=true
       - N8N_BASIC_AUTH_USER
       - N8N_BASIC_AUTH_PASSWORD
