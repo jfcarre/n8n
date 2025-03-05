@@ -61,22 +61,14 @@ services:
 
 volumes:
   caddy_data:
+    external: true
   caddy_config:
   n8n_storage:
+    external: true
   db_storage:
+    external: true
+  
 
 networks:
   n8n-network:
     driver: bridge
-
-
-
-
-    
-    # environment:
-    #   - N8N_HOST=${SUBDOMAIN}.${DOMAIN_NAME}
-    #   - WEBHOOK_URL=https://${SUBDOMAIN}.${DOMAIN_NAME}/
-    #   - GENERIC_TIMEZONE=${GENERIC_TIMEZONE}
-      
-      
-  
