@@ -2,6 +2,10 @@
 FROM n8nio/n8n:latest
 # FROM caddy:alpine
 
+RUN apk add --update graphicsmagick tzdata
+
+USER root
+
 # Copy local files (if needed)
 COPY . .
 
