@@ -1,9 +1,9 @@
 # Use the latest official n8n image as the base
-FROM n8nio/n8n:latest
+#FROM n8nio/n8n:latest
 # FROM caddy:alpine
-#FROM node:18-alpine
+FROM node:18-alpine
 
-#RUN apk add --update graphicsmagick tzdata
+RUN apk add --update graphicsmagick tzdata
 
 USER root
 
@@ -31,12 +31,12 @@ ENV N8N_BASIC_AUTH_PASSWORD=$PASSWORD
 
 ENV ENABLE_ALPINE_PRIVATE_NETWORKING=true
 
-# RUN apk --update add --virtual build-dependencies python3 build-base && \
-#    npm_config_user=root npm install --location=global n8n && \
-#    apk del build-dependencies
+RUN apk --update add --virtual build-dependencies python3 build-base && \
+    npm_config_user=root npm install --location=global n8n && \
+    apk del build-dependencies
 
 # Copy local files (if needed)
 #WORKDIR /data
 EXPOSE 5678
 
-CMD ["n8n", "start"]
+CMD export N8N_PORT=$PORT && n8n start
