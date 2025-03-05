@@ -1,12 +1,14 @@
-# Use an official Node.js runtime as a parent image for n8n
+# Use the official n8n image as the base
 FROM docker.n8n.io/n8nio/n8n:latest
 
 # Set working directory
 WORKDIR /home/node
 
-# Install Caddy
-RUN apt-get update && apt-get install -y curl && \
-    curl -fsSL https://getcaddy.com | bash
+# Install Caddy using apt
+RUN apt-get update && apt-get install -y debian-keyring debian-archive-keyring apt-transport-https && \
+    curl -fsSL https://dl.cloudsmith.io/public/caddy/stable/gpg.key | gpg --dearmor -o /usr/share/keyrings/caddy-keyring.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/caddy-keyring.gpg] https://dl.cloudsmith.io/public/caddy/stable/deb/debian any-version main" | tee /etc/apt/sources.list.d/caddy.list && \
+    apt-get update && apt-get install -y caddy
 
 # Install PostgreSQL client (optional, if needed)
 RUN apt-get install -y postgresql-client
