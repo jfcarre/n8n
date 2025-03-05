@@ -37,7 +37,7 @@ RUN apk --update add --virtual build-dependencies python3 build-base && \
     apk del build-dependencies
 
 # Copy local files (if needed)
-WORKDIR /data
+#WORKDIR /data
 EXPOSE 5678
 
 CMD ["n8n"]
