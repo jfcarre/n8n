@@ -2,9 +2,6 @@
 FROM n8nio/n8n:latest
 FROM caddy:alpine
 
-# Set the working directory
-WORKDIR ./
-
 # Copy local files (if needed)
 COPY . .
 
@@ -12,4 +9,4 @@ COPY . .
 EXPOSE 5678
 
 # Start n8n when the container runs
-CMD ["start"]
+CMD ["n8n start"]
