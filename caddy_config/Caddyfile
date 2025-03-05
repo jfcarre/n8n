@@ -1,5 +1,5 @@
 # Replace "n8n.example.com" with your actual domain
-n8n.example.com {
+n8n-production-8f51.up.railway.app {
     reverse_proxy n8n:5678
 
     # Optional: Enable basic authentication at the proxy level (extra security)
