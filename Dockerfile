@@ -15,7 +15,6 @@ EXPOSE map[5678/tcp:{}]
 ARG N8N_VERSION=1.81.4
 RUN |1 N8N_VERSION=1.81.4 /bin/sh -c
 LABEL org.opencontainers.image.title=n8n
-LABEL org.opencontainers.image.description=Workflow Automation Tool
 LABEL org.opencontainers.image.source=https://github.com/n8n-io/n8n
 LABEL org.opencontainers.image.url=https://n8n.io
 LABEL org.opencontainers.image.version=1.81.4 
