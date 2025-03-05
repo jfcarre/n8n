@@ -12,5 +12,4 @@ COPY . .
 EXPOSE 5678
 
 # Start n8n when the container runs
-CMD ["dir"]
-CMD ["n8n"]
+CMD ["start"]
